@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 
 type Message = {
   user: string;
@@ -8,9 +8,12 @@ type Message = {
 const ChatBox = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
+  // Add a useEffect to fetch the initial messages from your server
+
   const handleSendMessage = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const message = (event.currentTarget.elements.namedItem('message') as HTMLInputElement).value;
+    // Add your logic to send the message to your server
     setMessages([...messages, { user: 'You', message }]);
     event.currentTarget.reset();
   };
